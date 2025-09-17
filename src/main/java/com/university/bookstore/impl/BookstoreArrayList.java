@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class BookstoreArrayList {
+public class BookstoreArrayList implements BookstoreAPI {
     private final List<Book> books;
 
     public BookstoreArrayList() {
@@ -177,4 +177,4 @@ public class BookstoreArrayList {
 
         return newBookList;
     }
-} // add implement afterwards
+}
