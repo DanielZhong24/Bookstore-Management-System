@@ -26,13 +26,13 @@ public final class BookArrayUtils{
 
                 numBooks++;
             }
-            return numBooks;
+
 
 
         }
 
 
-
+            return numBooks;
 
 
 
@@ -45,12 +45,12 @@ public final class BookArrayUtils{
         int numBooks = 0;
 
         if(books == null || author== null){
-            return null;
+            return 0;
 
         }
 
         for(Book a : books){
-            if(  Book != null && a.getAuthor().equals author)
+            if(  a != null && a.getAuthor().equals (author))
                 numBooks++;
         }
 
@@ -71,7 +71,7 @@ public final class BookArrayUtils{
 
         if(maxPrice < 0){
 
-            throw new IllegalArgimenntException("You can't have a max price lower then 0");
+            throw new IllegalArgumentException("You can't have a max price lower then 0");
         }
 
 
@@ -80,7 +80,7 @@ public final class BookArrayUtils{
         }
 
         for(Book price : books){
-            if(books != null && price.getPrice() <= maxPrice) {
+            if( price != null && price.getPrice() <= maxPrice) {
                 bookCount++;
             }
         }
@@ -92,10 +92,10 @@ public final class BookArrayUtils{
 
             for(Book price : books){
 
-                if(books != null && price.getPrice() <= maxPrice) {
+                if( price != null && price.getPrice() <= maxPrice) {
 
 
-                    list[i] = book;
+                    list[i] = price;
 
                     i++;
 
@@ -116,32 +116,66 @@ public final class BookArrayUtils{
         }
 
 
-        public static Book[] filterByDecade (Book[]books,int decade){
+        public static Book[] filterByDecade (Book[]books,int decade) {
 
-        int bookCount=0;
+            int bookCount = 0;
 
-        if (books == null){
+            int i = 0;
 
-            return null;
-        }
+            if (books == null) {
 
-
-        for(Book s : books){
-
-            if( books != null && )
-        }
+                return new Book[0];
+            }
 
 
+            for (Book s : books) {
+
+                if (s != null && decade <= s.getYear() && s.getYear() <= decade + 9) {
+
+                    bookCount++;
+
+                }
 
 
+            }
 
+            Book[] byDec = new Book[bookCount];
+
+            for (Book s : books) {
+
+                if (s != null && decade <= s.getYear() && s.getYear() <= decade + 9) {
+
+                    byDec[i] = s;
+
+                    i++;
+
+                }
+
+
+            }
+            return byDec;
 
         }
 
         // Sorting operations (modify in-place)
 
 
-        public static void sortByPrice (Book[]books);
+        public static void sortByPrice (Book[]books){
+
+        if(books == null)
+        { return;}
+
+        Arrays.sort()
+
+
+
+
+
+
+
+
+
+        }
 
         public static void sortByYear (Book[]books);
 
