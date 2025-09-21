@@ -9,7 +9,7 @@ import java.util.List;
  * Bookstore API implemented using Java ArrayLists
  *
  * <p>This class uses an ArrayList to hold books in an "inventory" and allows
- * it only so unique ISBN's can be added to the inventory, duplicate ISBN's are denied.
+ * it only so unique ISBN's can be added to the inventory, duplicate ISBNs are denied.
  * A duplicate/defensive copy is returned so the original data is not affected</p>
  *
  * @author Andrew Cao
@@ -34,7 +34,7 @@ public class BookstoreArrayList implements BookstoreAPI {
     /**
      * Adds a book to the bookstore, but checks if it is null or already
      * exists by ISBN before adding
-     * O(n) time complexitiy - Has to check if book already exists
+     * O(n) time complexity - Has to check if book already exists
      * @param book, a book object
      * @return false if null or already exists, true otherwise
      */
