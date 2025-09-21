@@ -97,11 +97,11 @@ public class BookstoreArrayList implements BookstoreAPI {
 
         for (Book currBook: books) {
             if (currBook.getPrice() >= min && currBook.getPrice() <= max) {
-                bookList.add(currBook)
+                bookList.add(currBook);
             }
         }
 
-        return bookList
+        return bookList;
     }
 
     public ArrayList<Book> findByYear(int year) {

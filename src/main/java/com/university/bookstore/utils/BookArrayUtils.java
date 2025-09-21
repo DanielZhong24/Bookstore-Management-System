@@ -50,9 +50,9 @@ public final class BookArrayUtils{
         }
 
         for(Book a : books){
-            if(  Book != null && a.getAuthor().equals author)
+            if(  Book != null && a.getAuthor().equals(author)){
                 numBooks++;
-        }
+            }
 
 
         return numBooks;
