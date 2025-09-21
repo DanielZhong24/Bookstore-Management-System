@@ -15,7 +15,7 @@ public class BookstoreArrayList implements BookstoreAPI {
 
     public boolean add(Book book) {
         if (book == null) {
-            throw new IllegalArgumentException("Book cannot be null");
+            return false;
         }
 
         for (Book currBook : books) {
@@ -29,8 +29,8 @@ public class BookstoreArrayList implements BookstoreAPI {
 
 
     public Book findByIsbn(String isbn) {
-        if (isbn == null || isbn.isEmpty()) {
-            throw new IllegalArgumentException("ISBN is required");
+        if (isbn == null || isbn.trim().isEmpty()) {
+            return null;
         }
 
         for (Book currBook: books) {
@@ -44,7 +44,7 @@ public class BookstoreArrayList implements BookstoreAPI {
 
     public boolean removeByIsbn(String isbn) {
         if (isbn == null || isbn.trim().isEmpty()) {
-            throw new IllegalArgumentException("ISBN is required");
+            return false;
         }
 
         for (Book currBook: books) {
@@ -80,13 +80,12 @@ public class BookstoreArrayList implements BookstoreAPI {
             return null;
         }
 
-        author = author.toLowerCase();
+        author = author.trim().toLowerCase();
 
         ArrayList<Book> bookList = new ArrayList<>();
 
         for (Book currBook: books) {
-
-            if (currBook.getAuthor().equals(author)) {
+            if (currBook.getAuthor().toLowerCase().contains(author)) {
                 bookList.add(currBook);
             }
         }
@@ -96,7 +95,11 @@ public class BookstoreArrayList implements BookstoreAPI {
 
     public List<Book> findByPriceRange(double min, double max) {
         if (min > max) {
-            return null;
+            throw new IllegalArgumentException("Min cannot be greater than max");
+        }
+
+        if (min < 0 || max <= 0) {
+            throw new IllegalArgumentException("Price is invalid");
         }
 
         ArrayList<Book> bookList = new ArrayList<>();
@@ -111,7 +114,7 @@ public class BookstoreArrayList implements BookstoreAPI {
     }
 
     public List<Book> findByYear(int year) {
-        if (year <= 0) {
+        if (year <= 0 || year > 2025) {
             return null;
         }
 
