@@ -1,4 +1,10 @@
+package com.university.bookstore.impl;
+import com.university.bookstore.api.BookstoreAPI;
+import com.university.bookstore.model.Book;
+
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class BookstoreArrayList implements BookstoreAPI {
     private final List<Book> books;
@@ -51,7 +57,7 @@ public class BookstoreArrayList implements BookstoreAPI {
         return false;
     }
 
-    public ArrayList<Book> findByTitle(String title) {
+    public List<Book> findByTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
             return null;
         }
@@ -69,7 +75,7 @@ public class BookstoreArrayList implements BookstoreAPI {
         return bookList;
     }
 
-    public ArrayList<Book> findByAuthor(String author) {
+    public List<Book> findByAuthor(String author) {
         if (author == null || author.trim().isEmpty()) {
             return null;
         }
@@ -79,16 +85,16 @@ public class BookstoreArrayList implements BookstoreAPI {
         ArrayList<Book> bookList = new ArrayList<>();
 
         for (Book currBook: books) {
-            String currAuthor = currBook.getAuthor().toLowerCase();
-            if (currAuthor.contains(author)) {
-                bookList.add(currAuthor);
+
+            if (currBook.getAuthor().equals(author)) {
+                bookList.add(currBook);
             }
         }
 
         return bookList;
     }
 
-    public ArrayList<Book> findByPriceRange(double min, double max) {
+    public List<Book> findByPriceRange(double min, double max) {
         if (min > max) {
             return null;
         }
@@ -97,14 +103,14 @@ public class BookstoreArrayList implements BookstoreAPI {
 
         for (Book currBook: books) {
             if (currBook.getPrice() >= min && currBook.getPrice() <= max) {
-                bookList.add(currBook)
+                bookList.add(currBook);
             }
         }
 
-        return bookList
+        return bookList;
     }
 
-    public ArrayList<Book> findByYear(int year) {
+    public List<Book> findByYear(int year) {
         if (year <= 0) {
             return null;
         }
@@ -169,7 +175,7 @@ public class BookstoreArrayList implements BookstoreAPI {
         return bookArray;
     }
 
-    public ArrayList<Book> getAllBooks() {
+    public List<Book> getAllBooks() {
         ArrayList<Book> newBookList = new ArrayList<>();
         for (Book currBook: books) {
             newBookList.add(currBook);
