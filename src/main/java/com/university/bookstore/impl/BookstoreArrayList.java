@@ -98,7 +98,7 @@ public class BookstoreArrayList implements BookstoreAPI {
      * Returns a list of books that has the provided title in its title name
      * O(n) time complexity - Has to check each book if it contains the given title
      * @param title, the title of the book, case-sensitive and partial matching
-     * @return List<Book>, a list of books
+     * @return List, a list of books
      */
     public List<Book> findByTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
@@ -122,7 +122,7 @@ public class BookstoreArrayList implements BookstoreAPI {
      * Searches through to find all books that contain the given author name
      * O(n) time complexity - Has to search through each book to see if it contains the name
      * @param author, the author name, can be case-sensitive and partial matching
-     * @return List<Book>, a list of books that contains the author's name
+     * @return List, a list of books that contains the author's name
      */
     public List<Book> findByAuthor(String author) {
         if (author == null || author.trim().isEmpty()) {
@@ -147,7 +147,7 @@ public class BookstoreArrayList implements BookstoreAPI {
      * O(n) time complexity - Has to check each book to see if it is within that range
      * @param min, the minimum price
      * @param max, the maximum price
-     * @return List<Book>, a list of books between the min and max price range
+     * @return List, a list of books between the min and max price range
      */
     public List<Book> findByPriceRange(double min, double max) {
         if (min > max) {
@@ -173,7 +173,7 @@ public class BookstoreArrayList implements BookstoreAPI {
      * Finds books that were released on the provided year
      * O(n) time complexity - Has to check all books if it were released on that year
      * @param year, the year the book was released on
-     * @return List<Book>, a list of books that were released on the given year
+     * @return List, a list of books that were released on the given year
      */
     public List<Book> findByYear(int year) {
         if (year <= 0 || year > 2025) {
@@ -267,7 +267,7 @@ public class BookstoreArrayList implements BookstoreAPI {
     /**
      * Gets a defensive copy of the original bookstore as a list
      * O(n) time complexity - Has to loop over each book to copy over
-     * @return List<Book>, a copy of the original bookstore in a list format
+     * @return List, a copy of the original bookstore in a list format
      */
     public List<Book> getAllBooks() {
         ArrayList<Book> newBookList = new ArrayList<>();
