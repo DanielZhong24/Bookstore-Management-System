@@ -88,6 +88,29 @@ TreeMap is similar to a HashMap, except a TreeMap has the order of the keys sort
 
     Some cons include increased complexity, which can make it harder for other developers to understand the APIs at first glance. Additionally, some classes might need to implement multiple interfaces, which can lead to duplicated method signatures.
 
+8. Concurrency: Multiple threads need to access your bookstore. How would you make it threadsafe?
+Compare:
+• synchronized methods
+• ReadWriteLock
+• ConcurrentHashMap
+• Immutable snapshot approach
+
+ Synchronized methods are pretty easy to use as methods just need the synchronized keyword added. They ensure that only one thread can execute a single method at a time on an object.They ensure memory visibility along with mutual exclusion. However, synchronized methods can cause deadlocks if there are many objects that have synchronized methods that are locked by threads in different orders. They can also increase the time taken to get a response from the program since threads get blocked while waiting for a synchronized method.
+
+Readwritelock separates read and write operations from each other. It allows threads to read simultaneously which reduces contention. The downside of this is that it’s more complex and isn’t good to use in everything.
+
+
+ConcurrentHashMap is a threadsafe implementation that can be safely accessed by multiple threads. It has high performance under concurrency since it uses fine grained locking and is scalable since it’s designed for concurrent environments with many threads. However, it is pretty complex making it more difficult to debug it for any performance issues it may contain and it’s restricting since null can’t be stored inside it.
+
+An immutable snapshot approach is a design strategy where readers can work in the snapshot without synchronization since it’s immutable and writers can build and replace an old snapshot with a new one. Since it can be replaced or updated, it can demand a lot of memory if the snapshot that’s being updated is large and it’s not great for write-heavy applications since updating it requires it to be rebuilt.
+
+9. Design a simple performance monitoring system. What metrics would you track? How would you identify bottlenecks?
+
+System level metrics to keep track of cpu, memory, network and disk usage on user’s devices, application level metrics to see how the application operates, how quickly it runs and the amount of times it runs into errors. In order to identify bottlenecks I would need to check the entire process for the application, check how long it takes for it to run, look into what has the longest run time out of everything in the application.
+
+10. Is 100% code coverage always desirable? Provide examples of code that might not need testing and code that needs extensive testing despite being simple.
+
+No, 100% code coverage isn’t always desirable. 100% code coverage doesn’t mean that the logic in the code is verified. Trying to achieve 100% code coverage is a waste of time and can potentially make the code more complex. Some code that might not require testing would be getter and setter methods. While some code that does need extensive testing despite being simple would be methods that run operations and return the result of said operation.
 
 
 11.Test Pyramid for the Bookstore System
