@@ -87,3 +87,40 @@ TreeMap is similar to a HashMap, except a TreeMap has the order of the keys sort
     Yes, splitting into multiple interfaces could be beneficial. Some of the pros include making the application more flexible. For example, if a client requires a simple dashboard interface, they might have no use for add or removeByISBN functions. Having separate interfaces allows clients to depend only on the methods they need, avoiding unnecessary dependencies.
 
     Some cons include increased complexity, which can make it harder for other developers to understand the APIs at first glance. Additionally, some classes might need to implement multiple interfaces, which can lead to duplicated method signatures.
+
+
+
+11.Test Pyramid for the Bookstore System
+
+
+Unit Tests (≈70%)
+
+
+Book constructor rejects invalid inputs → e.g., negative price, null title, or impossible year.
+
+Book equality and hashing → confirm that two books with the same ISBN are treated as equal in sets/maps.
+
+BookstoreArrayList prevents duplicates → adding a book with an existing ISBN doesn’t increase size.
+
+Title and author lookups → searches ignore case and return exact matches only.
+
+BookArrayUtils filtering/sorting → filterByYearRange excludes out-of-range items, and sortByPrice places nulls at the end.
+
+
+
+Integration Tests (≈20%)
+
+
+BookstoreArrayList with BookArrayUtils → add several books to the store, then apply filterByDecade on snapshotArray() to confirm the two components work together.
+
+Chained operations → after inserting books, run removeDuplicates followed by countByDecade to ensure unique counts are produced correctly.
+
+Search + inventory consistency → add and remove books, then verify that findByYear and inventoryValue both reflect the updated store.
+
+
+End-to-End Tests (≈10%)
+
+
+User workflow simulation → a user adds books, searches by author, deletes one, and then checks that the most recent and most expensive books returned are correct.
+
+Bulk data import scenario → import an array containing duplicates and null entries, clean it using removeDuplicates, load it into the store, and confirm the snapshot only shows valid unique items.
