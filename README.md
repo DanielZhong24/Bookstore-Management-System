@@ -88,6 +88,42 @@ TreeMap is similar to a HashMap, except a TreeMap has the order of the keys sort
 
     Some cons include increased complexity, which can make it harder for other developers to understand the APIs at first glance. Additionally, some classes might need to implement multiple interfaces, which can lead to duplicated method signatures.
 
+
+7.3 One Million Books  
+
+When expanding the bookstore to millions of entries, raw linear searches or simple arrays will no longer be sufficient. Indexing becomes the primary driver of query performance. The ISBN, as a globally unique identifier, should serve as the main index to guarantee constant time lookups for exact matches. Beyond that, indexes should be tailored to the common access patterns. For instance, frequent searches by author name or book title can be sped up by normalizing these fields (e.g., converting to lowercase, trimming punctuation) and creating secondary indexes. For queries that rely on ranges, such as filtering by publication year or price brackets, ordered indexes such as B-trees or skip lists provide efficient navigation across large spans of data.  
+
+Caching also plays an important role in ensuring low latency. Instead of recalculating results every time, hot items like frequently requested ISBNs, trending authors, or recently released books can be stored in memory. Aggregated values such as total value of inventory or most recent additions can also be cached and updated incrementally, rather than recomputed from scratch. Result caching for popular search queries is useful as well, provided invalidation strategies are in place so that updates remain consistent.  
+
+For persistence, the choice between relational and non-relational databases depends on requirements. A relational system such as PostgreSQL or MySQL is often the first choice when strong consistency, joins across multiple entities (publishers, orders, customers), and transactional safety are needed. Well-defined B-tree indexes on ISBN, normalized author and title fields, and publication year ensure efficient performance. If the catalog grows so large that horizontal scaling is unavoidable, a NoSQL database may be more appropriate. Document stores like MongoDB can handle flexible schemas, while key-value systems allow extremely fast ISBN lookups. For complex text-based queries, pairing the main store with a search engine such as Elasticsearch is often the most effective hybrid solution.  
+
+Pagination ensures that users can browse results without overwhelming the system. Offset-based pagination for example LIMIT 20 OFFSET 1000 is simple but becomes inefficient on very deep pages. Keyset pagination avoids this issue by using the last retrieved row as a cursor, ensuring consistent ordering and better performance even when new records are inserted. Exposing a nextPageToken or similar cursor makes it easy for clients to continue fetching data from where they left off.  
+
+Together, indexing, caching, database integration, and pagination form the backbone of scaling this system to millions of books while keeping performance predictable and responsive.  
+
+• Indexing
+  - Primary: ISBN (unique lookups).  
+  - Secondary: normalized title, normalized author, publication year.  
+  - Range queries: use ordered structures for year and price filters.  
+
+• Caching 
+  - Popular ISBN lookups stored in-memory.  
+  - Frequently used queries (e.g., common authors, genres).  
+  - Aggregates like total value and most recent entries updated incrementally.  
+
+• Database integration
+
+  - SQL (PostgreSQL/MySQL) for ACID guarantees, joins, and transactional integrity.  
+  - NoSQL (MongoDB, DynamoDB) or a hybrid model for very large-scale horizontal distribution.  
+  - External search engine (Elasticsearch) for fuzzy or full-text title/author queries.  
+
+• Pagination 
+  - Use keyset (seek) pagination for efficient large-scale navigation.  
+  - Provide stable ordering (e.g., title + ISBN) and return a next-page token.  
+
+
+    
+
 8. Concurrency: Multiple threads need to access your bookstore. How would you make it threadsafe?
 Compare:
 • synchronized methods
