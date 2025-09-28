@@ -96,31 +96,31 @@ TreeMap is similar to a HashMap, except a TreeMap has the order of the keys sort
 Unit Tests (≈70%)
 
 
-Book constructor rejects invalid inputs → e.g., negative price, null title, or impossible year.
+Book constructor rejects invalid inputs: such as negative price, null title, or impossible year.
 
-Book equality and hashing → confirm that two books with the same ISBN are treated as equal in sets/maps.
+Book equality and hashing: confirm that two books with the same ISBN are treated as equal in sets/maps.
 
-BookstoreArrayList prevents duplicates → adding a book with an existing ISBN doesn’t increase size.
+BookstoreArrayList prevents duplicates: adding a book with an existing ISBN doesn’t increase size.
 
-Title and author lookups → searches ignore case and return exact matches only.
+Title and author lookups: searches ignore case and return exact matches only.
 
-BookArrayUtils filtering/sorting → filterByYearRange excludes out-of-range items, and sortByPrice places nulls at the end.
+BookArrayUtils filtering/sorting: filterByYearRange excludes out-of-range items, and sortByPrice places nulls at the end.
 
 
 
 Integration Tests (≈20%)
 
 
-BookstoreArrayList with BookArrayUtils → add several books to the store, then apply filterByDecade on snapshotArray() to confirm the two components work together.
+BookstoreArrayList with BookArrayUtils: add several books to the store, then apply filterByDecade on snapshotArray() to confirm the two components work together.
 
-Chained operations → after inserting books, run removeDuplicates followed by countByDecade to ensure unique counts are produced correctly.
+Chained operations: after inserting books, run removeDuplicates followed by countByDecade to ensure unique counts are produced correctly.
 
-Search + inventory consistency → add and remove books, then verify that findByYear and inventoryValue both reflect the updated store.
+Search + inventory consistency: add and remove books, then verify that findByYear and inventoryValue both reflect the updated store.
 
 
 End-to-End Tests (≈10%)
 
 
-User workflow simulation → a user adds books, searches by author, deletes one, and then checks that the most recent and most expensive books returned are correct.
+User workflow simulation: a user adds books, searches by author, deletes one, and then checks that the most recent and most expensive books returned are correct.
 
-Bulk data import scenario → import an array containing duplicates and null entries, clean it using removeDuplicates, load it into the store, and confirm the snapshot only shows valid unique items.
+Bulk data import scenario: import an array containing duplicates and null entries, clean it using removeDuplicates, load it into the store, and confirm the snapshot only shows valid unique items.
