@@ -23,13 +23,7 @@ public final class BookArrayUtils {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
 
-    /**
-     * Counts books published before a given year.
-     *
-     * @param books the array of books (may be null or contain nulls)
-     * @param yearCutoff the year threshold (exclusive)
-     * @return the number of books published before the specified year
-     */
+    /** Counts books published before a given year. */
     public static int countBeforeYear(Book[] books, int yearCutoff) {
         if (books == null) return 0;
         int count = 0;
@@ -41,13 +35,7 @@ public final class BookArrayUtils {
         return count;
     }
 
-    /**
-     * Counts books by a specific author.
-     *
-     * @param books the array of books (may be null or contain nulls)
-     * @param author the author's name to count
-     * @return the number of books by the specified author
-     */
+    /** Counts books by a specific author. */
     public static int countByAuthor(Book[] books, String author) {
         if (books == null || author == null) return 0;
         int count = 0;
@@ -59,13 +47,7 @@ public final class BookArrayUtils {
         return count;
     }
 
-    /**
-     * Returns books with price at most maxPrice.
-     *
-     * @param books the array of books (may be null or contain nulls)
-     * @param maxPrice the maximum price (inclusive)
-     * @return a new array containing books with price <= maxPrice
-     */
+    /** Returns books with price at most maxPrice. */
     public static Book[] filterPriceAtMost(Book[] books, double maxPrice) {
         if (books == null) return new Book[0];
         int count = 0;
@@ -80,13 +62,7 @@ public final class BookArrayUtils {
         return result;
     }
 
-    /**
-     * Returns books published in a specific decade.
-     *
-     * @param books the array of books (may be null or contain nulls)
-     * @param decade the starting year of the decade
-     * @return a new array containing books published in the specified decade
-     */
+    /** Returns books published in a specific decade. */
     public static Book[] filterByDecade(Book[] books, int decade) {
         if (books == null) return new Book[0];
         int count = 0;
@@ -101,12 +77,7 @@ public final class BookArrayUtils {
         return result;
     }
 
-    /**
-     * Sorts books by price in ascending order (in-place).
-     * Nulls are moved to the end.
-     *
-     * @param books the array to sort (modified in-place)
-     */
+    /** Sorts books by price in ascending order (in-place). Nulls go to the end. */
     public static void sortByPrice(Book[] books) {
         if (books == null) return;
         Arrays.sort(books, (b1, b2) -> {
@@ -117,12 +88,7 @@ public final class BookArrayUtils {
         });
     }
 
-    /**
-     * Sorts books by year in ascending order (in-place).
-     * Nulls are moved to the end.
-     *
-     * @param books the array to sort (modified in-place)
-     */
+    /** Sorts books by year in ascending order (in-place). Nulls go to the end. */
     public static void sortByYear(Book[] books) {
         if (books == null) return;
         Arrays.sort(books, (b1, b2) -> {
@@ -133,12 +99,7 @@ public final class BookArrayUtils {
         });
     }
 
-    /**
-     * Returns the average price of all books.
-     *
-     * @param books the array of books (may be null or contain nulls)
-     * @return the average price, or 0.0 if array is null or empty
-     */
+    /** Returns the average price of all books. */
     public static double averagePrice(Book[] books) {
         if (books == null) return 0.0;
         double sum = 0.0;
@@ -152,12 +113,7 @@ public final class BookArrayUtils {
         return count == 0 ? 0.0 : sum / count;
     }
 
-    /**
-     * Finds the oldest book in the array.
-     *
-     * @param books the array of books (may be null or contain nulls)
-     * @return the book with the earliest year, or null if none
-     */
+    /** Finds the oldest book in the array. */
     public static Book findOldest(Book[] books) {
         if (books == null) return null;
         Book oldest = null;
@@ -167,13 +123,7 @@ public final class BookArrayUtils {
         return oldest;
     }
 
-    /**
-     * Merges two book arrays into one. Null arrays are treated as empty.
-     *
-     * @param arr1 the first array
-     * @param arr2 the second array
-     * @return a new array containing all books from both arrays
-     */
+    /** Merges two book arrays into one. Null arrays are treated as empty. */
     public static Book[] merge(Book[] arr1, Book[] arr2) {
         int len1 = (arr1 == null) ? 0 : arr1.length;
         int len2 = (arr2 == null) ? 0 : arr2.length;
@@ -184,18 +134,16 @@ public final class BookArrayUtils {
         return merged;
     }
 
-    /**
-     * Removes duplicate books based on ISBN.
-     *
-     * @param books the array of books (may be null or contain nulls)
-     * @return a new array containing only unique books
-     */
+    /** Removes duplicate books based on ISBN using nested loops. */
     public static Book[] removeDuplicates(Book[] books) {
         if (books == null) return new Book[0];
+
         Book[] temp = new Book[books.length];
         int count = 0;
+
         for (Book b : books) {
             if (b == null) continue;
+
             boolean duplicate = false;
             for (int i = 0; i < count; i++) {
                 if (b.getIsbn().equals(temp[i].getIsbn())) {
@@ -203,8 +151,12 @@ public final class BookArrayUtils {
                     break;
                 }
             }
-            if (!duplicate) temp[count++] = b;
+
+            if (!duplicate) {
+                temp[count++] = b;
+            }
         }
+
         Book[] result = new Book[count];
         for (int i = 0; i < count; i++) result[i] = temp[i];
         return result;
