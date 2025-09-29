@@ -2,21 +2,45 @@ package com.university.bookstore.model;
 
 
 /**
+ * Represents a book in the bookstore inventory.
+ * Every book is immutable and unique base on their ISBN.
  *
+ * <p>This class is immutable and thread-safe. All fields are validated
+ * during construction to ensure data integrity.</p>
+ * @author Jinyang Zhong
+ * @version 1.0
+ * @since 2025-09-20
  */
 public final class Book implements  Comparable<Book>{
 
     /**
-     *
+     * The International Standard Book Number (ISBN) uniquely identifying this book.
      */
     private final String isbn;
-    private final String title;
-    private final String author;
-    private final double price;
-    private final int year;
 
     /**
-     *
+     * The title of the book.
+     */
+    private final String title;
+
+    /**
+     * The author of the book.
+     */
+    private final String author;
+
+    /**
+     * The price of the book in the local currency.
+     */
+    private final double price;
+
+    /**
+     * The year the book was published.
+     */
+    private final int year;
+
+
+    /**
+     * Constructor of the Book class, every parameter is validated upon creation.
      * @param isbn a 10 or 13 length ISBN code
      * @param title the title of the book
      * @param author name of the author of the book

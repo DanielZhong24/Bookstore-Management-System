@@ -1,3 +1,8 @@
+package com.university.bookstore.api;
+import java.util.List;
+
+import com.university.bookstore.model.Book;
+
 public interface BookstoreAPI {
     boolean add(Book book);
     boolean removeByIsbn(String isbn);
@@ -15,34 +20,5 @@ public interface BookstoreAPI {
     // Export operations
     Book[] snapshotArray();
     List<Book> getAllBooks();
-    public boolean add(Book book){
 
-    }
-    public Book findByIsbn(String isbn){
-
-    }
-    public boolean findByIsbn(String titleQuery){
-
-    }
-    public List<Book> findByAuthor(String autthorQuery){
-
-    }
-    public List<Book> findByPriceRange (double minPrice, double maxPrice){
-
-    }
-    public List<Book> findByYear(int year){
-
-    }
-    public int size(){
-
-    }
-    public double inventoryValue(){
-
-    }
-    public Book getMostExpensiveBook(){
-
-    }
-    public Book getMostRecent(){
-        
-    }
 }
