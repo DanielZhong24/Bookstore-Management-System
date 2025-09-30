@@ -1,3 +1,10 @@
+
+# Bookstore management system
+## Youtube video
+[![Lab 1: Jinyang, Andrew, Shrey, Courage](https://img.youtube.com/vi/rgJRQYZ_0iM/0.jpg)](https://www.youtube.com/watch?v=rgJRQYZ_0iM)
+
+## Reflection
+
 1. Array vs ArrayList: Provide three specific scenarios where a fixed-size Book[] would be preferable to an ArrayList<Book>. Consider memory usage, performance, and API design.
 
 A fixed-size Book[] would be preferable to an ArrayList when we know the fixed size in advance before creating the array, and knowing that the size will not change. Meaning that dynamic resizing form an ArrayList is not needed
